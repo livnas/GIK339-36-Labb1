@@ -1,6 +1,64 @@
+:root
+{
+    font-size: 62.5%;
+}
+
+body
+{
+    /* background-color: rgb(12, 79, 48); */
+    background: url("annie-spratt-unsplash-snowflakes.jpg");
+}
+
+.test {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    font-size: 1.5rem;
+    /* margin-left: auto;
+    margin-right: auto; */
+    background-color: lightgray;
+    border-radius: 1rem;
+    max-width: 65%;
+    padding: 4rem 10rem 8rem 10rem;
+}
+
+.headline
+{
+    font-size: 4rem;
+    color:rgb(0, 0, 0);
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.form
+{
+    display: grid;
+    row-gap: 2rem;
+    column-gap: 2rem;
+    grid-template-columns: auto auto;
+}
+
+.button {
+    margin-top: 1rem;
+}
+
 .color
 {
-    height: 250px;
-    width: 250px;
-    background-color: black;
+    border: 2px solid black;
+    margin-top: 2rem;
+}
+
+.label
+{
+    line-height: 150%;
+}
+
+.checkbox
+{
+    margin: unset;
+    justify-self: start;
 }
