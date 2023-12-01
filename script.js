@@ -2,70 +2,42 @@
 const checkBox = document.getElementsByTagName("input")[2];
 const textFields = document.querySelectorAll(".textfield");
 const button = document.querySelector(".button");
-const changeColor = document.getElementById("changeColor");
+const changeDiv = document.getElementById("changeDiv");
 
 //Lägger till eventlyssnare på samtliga textFields från nodeList => 
-//förväntar sig ett mouseover -event
+//eventlyssnare förväntar sig ett keyup -event
 
-textFields.forEach((field) => field.addEventListener("blur", getContent));
+textFields.forEach((field) => field.addEventListener("keyup", getContent));
 
-//Funktion för att sätta innehållet från "content" -input elementet till div:en "color"
+//Funktion för att sätta innehållet i div-elementet för färg till det som skrivs in i "content" -input elementet.
 function getContent(e) 
 {
     //hämtar namnet på elementet som triggade eventet
-    elementName = e.target.name;
-    console.log(`Du skrev nyss i ${elementName} -fältet!`)
+    var elementTarget = e.target;
+    
+    console.log(elementTarget)
     //Kollar om elementet som triggade eventet är "content" =>
     //Om true, flytta över innehållet till div:en
-    /*if(elementName === "content")
+    if(elementTarget.name === "content")
     {
-        changeColor.innerHTML = e.target.value;
-    }*/
-
-    //testade med samma som nedanför här också :D
-
-    changeColor.innerHTML = (elementName === "content") && e.target.value;
+        changeDiv.innerHTML = elementTarget.value;
+    }
 }
 
-// -----------------------------------------------------------------------------------------
-
 // Adderar en eventlyssnare till checkboxen som reagerar när en förändring sker i checkboxen. 
+// Vid förändring ska bakgrundsfärg på div-elementet changeDiv ändras till den färg som står skriven i färg-textfältet.
 checkBox.addEventListener('change', (function() {
+    
+    for (field of textFields) {
 
-
-   /* for (field of textFields) {
-
-       const test = field.getAttribute('name') ? color : !color;
+       const testName = field.getAttribute('name') ? color : !color;
        
-       changeColor.style.backgroundColor = test.value;
-    } */
+       changeDiv.style.backgroundColor = testName.value;
+    } 
 
-    // Vid true tilldelas värdet för det högra uttrycket till changeColor.style.backgroundColor.
-    textFields.forEach((field) => changeColor.style.backgroundColor = (field.getAttribute('name') === "color" && field.value));
-
-
-    // Alternativt om vi måste använda attributen name.
-    /*for(textField of textFields)
-    {
-        if(textField.getAttribute('name') === "color")
-        {
-            console.log(`Correct path: ${textField.value}`)
-            changeColor.style.background = textField.value
-        }
-    }*/
-
+    // Här görs samma sak som ovan fast kod är skrivet på endast en rad. Om ni är nyfikna kan ni testa den :)
+    // textFields.forEach((field) => changeDiv.style.backgroundColor = (field.getAttribute('name') === "color" && field.value));
 }));
 
-// Eventlyssnare 
-button.addEventListener('click', () => changeColor.remove());
-
-// Funktion för att byta ut färg på div-element.
-
-/* function testScript()
-{
-    changeColor.style.background = "blue";
-    for(let i = 0; i < textFields.length; i++)
-    {
-        textFields[i].style.background = "green";
-    }
-} */ 
+// Eventlyssnare för knappen som lyssnar efter att vi klickar på elementet med lyssnaren. Vid tryck ska div-elementet tas bort.
+button.addEventListener('click', () => changeDiv.remove());
